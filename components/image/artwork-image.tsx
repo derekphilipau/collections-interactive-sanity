@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { urlForImage } from '@/sanity/lib/image';
 import cn from 'classnames';
+
+import { urlForImage } from '@/lib/sanity/image';
 
 interface ArtworkImageProps {
   title: string;

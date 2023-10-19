@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { urlForImage } from '@/sanity/lib/image';
+
+import { urlForImage } from '@/lib/sanity/image';
 
 interface ArtistAvatarProps {
   name: string;

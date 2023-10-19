@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
-import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { SanityDocument } from 'next-sanity';
 import { PreviewSuspense } from 'next-sanity/preview';
 
-import { artworkQuery, artworkSlugsQuery } from '@/lib/queries/artwork';
-import { getGalleryQuery } from '@/lib/queries/gallery';
+import { artworkQuery, artworkSlugsQuery } from '@/lib/sanity/queries/artwork';
+import { getGalleryQuery } from '@/lib/sanity/queries/gallery';
+import { sanityFetch } from '@/lib/sanity/sanityFetch';
 import Artwork from '@/components/artwork/artwork';
 import ArtworkPreview from '@/components/artwork/artwork-preview';
 

@@ -1,7 +1,7 @@
-import { sanityFetch } from '@/sanity/lib/sanityFetch';
 import { SanityDocument } from 'next-sanity';
 
-import { getGalleryQuery } from '@/lib/queries/gallery';
+import { getGalleryQuery } from '@/lib/sanity/queries/gallery';
+import { sanityFetch } from '@/lib/sanity/sanityFetch';
 import Gallery from '@/components/gallery/gallery';
 
 type Props = {

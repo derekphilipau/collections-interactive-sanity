@@ -1,4 +1,4 @@
-import ArtistAvatar from '../artist-avatar';
+import ArtistAvatar from '@/components/constituent/avatar';
 
 interface ArtworkHeaderProps {
   title: string;

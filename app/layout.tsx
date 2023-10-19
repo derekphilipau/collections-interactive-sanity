@@ -11,22 +11,22 @@ const inter = Inter({
 
 export const metadata = {
   title: {
-    default: 'musefully',
-    template: '%s | musefully',
+    default: 'Collections Interactive',
+    template: '%s | Collections Interactive',
   },
-  description: 'Musefully browse the art world.',
+  description: 'Collections Interactive using Sanity & Next.js',
   icons: {
     icon: [
       {
-        url: '/favicon.svg',
+        url: '/favicon/favicon.ico',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/favicon.svg',
+        url: '/favicon/favicon.ico',
         media: '(prefers-color-scheme: dark)',
       },
     ],
-    apple: '/apple-icon.jpg',
+    apple: '/favicon/apple-touch-icon-180x180.png',
   },
 };
 

@@ -1,7 +1,6 @@
-import { usePreview } from "../../lib/sanity";
-
-import Gallery from "./gallery";
-import { getGalleryQuery } from "../../lib/queries/gallery";
+import { usePreview } from '../../lib/sanity';
+import { getGalleryQuery } from '../../lib/sanity/queries/gallery';
+import Gallery from './gallery';
 
 export default function GalleryPreview({ gallery }) {
   const galleryQuery = getGalleryQuery(process.env.DEFAULT_GALLERY_ID);
