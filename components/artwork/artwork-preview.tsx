@@ -1,9 +1,9 @@
-import { usePreview } from "../../lib/sanity";
-import { artworkQuery } from "../../lib/queries/artwork";
-import Artwork from "./artwork";
+import { artworkQuery } from '../../lib/queries/artwork';
+import { usePreview } from '../../lib/sanity';
+import Artwork from './artwork';
 
-export default function ArtworkPreview({ data }) {
-  const slug = data?.post?.slug;
+export default function ArtworkPreview({ artwork }) {
+  const slug = artwork?.slug;
   const previewData = usePreview(null, artworkQuery, { slug });
-  return <Artwork data={previewData ?? data} preview />;
+  return <Artwork artwork={previewData ?? artwork} preview />;
 }

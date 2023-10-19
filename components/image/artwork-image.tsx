@@ -1,7 +1,7 @@
-import cn from "classnames";
-import Image from "next/image";
-import Link from "next/link";
-import { urlForImage } from "../../lib/sanity";
+import Image from 'next/image';
+import Link from 'next/link';
+import { urlForImage } from '@/sanity/lib/image';
+import cn from 'classnames';
 
 interface ArtworkImageProps {
   title: string;
@@ -18,8 +18,8 @@ export default function ArtworkImage({
 }: ArtworkImageProps) {
   const image = source?.asset?._ref ? (
     <div
-      className={cn("shadow-small", {
-        "hover:shadow-medium transition-shadow duration-200": slug,
+      className={cn('shadow-small', {
+        'hover:shadow-medium transition-shadow duration-200': slug,
       })}
     >
       <Image
@@ -33,13 +33,13 @@ export default function ArtworkImage({
       />
     </div>
   ) : (
-    <div style={{ paddingTop: "50%", backgroundColor: "#ddd" }} />
+    <div style={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
   );
 
   return (
     <div className="sm:mx-0">
       {slug ? (
-        <Link href={`/posts/${slug}`} aria-label={title}>
+        <Link href={`/artwork/${slug}`} aria-label={title}>
           {image}
         </Link>
       ) : (

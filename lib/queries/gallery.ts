@@ -1,4 +1,4 @@
-import { artworkFields } from "./artwork";
+import { artworkFields } from './artwork';
 
 export const galleryFields = `
   _id,
@@ -10,6 +10,9 @@ export const galleryFields = `
   },
 `;
 
-export function getGalleryQuery(galleryId: string) {
+export function getGalleryQuery(galleryId: string | undefined) {
+  if (!galleryId) {
+    return '';
+  }
   return `*[_id == "${galleryId}"][0]{ ${galleryFields} }`;
 }

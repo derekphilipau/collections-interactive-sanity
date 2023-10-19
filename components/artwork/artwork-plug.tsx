@@ -1,13 +1,14 @@
-import Avatar from "../avatar";
-import Date from "../date";
-import CoverImage from "../image/cover-image";
-import Link from "next/link";
+import Link from 'next/link';
+
+import Avatar from '../avatar';
+import Date from '../date';
+import CoverImage from '../image/cover-image';
 
 export default function ArtworkPlug({
   title,
   coverImage,
   date,
-  excerpt,
+  bio,
   author,
   slug,
 }) {
@@ -24,7 +25,7 @@ export default function ArtworkPlug({
       <div className="mb-4 text-lg">
         <Date dateString={date} />
       </div>
-      <p className="mb-4 text-lg leading-relaxed">{excerpt}</p>
+      <p className="mb-4 text-lg leading-relaxed">{bio}</p>
       {author && <Avatar name={author.name} picture={author.picture} />}
     </div>
   );

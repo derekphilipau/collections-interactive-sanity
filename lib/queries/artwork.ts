@@ -5,7 +5,7 @@ export const artworkFields = `
   excerpt,
   image,
   "slug": slug.current,
-  "primaryConstituent": primaryConstituent->{name, excerpt, image},
+  "primaryConstituent": primaryConstituent->{name, bio, image},
 `;
 
 export const indexQuery = `
@@ -19,7 +19,7 @@ export const artworkQuery = `
     description,
     ${artworkFields}
   },
-  "morePosts": *[_type == "artwork" && slug.current != $slug] | order(date desc, _updatedAt desc) [0...2] {
+  "moreArtworks": *[_type == "artwork" && slug.current != $slug] | order(date desc, _updatedAt desc) [0...2] {
     description,
     ${artworkFields}
   }
