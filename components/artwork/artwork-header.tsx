@@ -13,7 +13,7 @@ export default function ArtworkHeader({
 }: ArtworkHeaderProps) {
   return (
     <>
-      <div className="max-w-2xl mx-auto">
+      <div className="">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight md:leading-none mb-6 text-center md:text-left">
           {title}
         </h1>
