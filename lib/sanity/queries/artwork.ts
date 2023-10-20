@@ -3,9 +3,10 @@ export const artworkFields = `
   title,
   formattedDate,
   excerpt,
+  description,
   image,
   "slug": slug.current,
-  "primaryConstituent": primaryConstituent->{name, bio, image},
+  primaryConstituent->,
 `;
 
 export const indexQuery = `

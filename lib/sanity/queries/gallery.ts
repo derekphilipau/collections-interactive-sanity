@@ -3,7 +3,13 @@ import { artworkFields } from './artwork';
 export const galleryFields = `
   _id,
   title,
-  description,
+  description[]{
+    ...,
+    _type == "image" => {
+      ...,
+      asset->
+    }
+  },
   image,
   artworks[]->{
     ${artworkFields}

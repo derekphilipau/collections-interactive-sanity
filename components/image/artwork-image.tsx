@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import cn from 'classnames';
 
 import { urlForImage } from '@/lib/sanity/image';
@@ -37,15 +36,5 @@ export default function ArtworkImage({
     <div style={{ paddingTop: '50%', backgroundColor: '#ddd' }} />
   );
 
-  return (
-    <div className="sm:mx-0">
-      {slug ? (
-        <Link href={`/artwork/${slug}`} aria-label={title}>
-          {image}
-        </Link>
-      ) : (
-        image
-      )}
-    </div>
-  );
+  return <div className="sm:mx-0">{image}</div>;
 }

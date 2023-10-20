@@ -34,12 +34,14 @@ export async function sanityFetch<QueryResponse>({
     .withConfig({ useCdn: !isDraftMode })
     .fetch<QueryResponse>(query, params, {
       cache: isDevelopment || isDraftMode ? undefined : 'force-cache',
-      ...(isDraftMode && {
-        token: token,
-        perspective: 'previewDrafts',
-      }),
+      ...(isDraftMode
+        ? {
+            token: token,
+            perspective: 'previewDrafts',
+          }
+        : {}),
       next: {
-        ...(isDraftMode && { revalidate: 30 }),
+        ...(isDraftMode ? { revalidate: 30 } : {}),
         tags,
       },
     });

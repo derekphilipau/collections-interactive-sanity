@@ -39,7 +39,7 @@ export default async function RootLayout({
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <head />
       <body className="bg-white font-sans text-neutral-900 antialiased dark:bg-neutral-900 dark:text-neutral-50">
-        <main className="min-h-screen p-8">{children}</main>
+        <main className="min-h-screen">{children}</main>
       </body>
     </html>
   );

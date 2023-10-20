@@ -1,9 +1,11 @@
 import { PortableText } from '@portabletext/react';
 
+import { portableTextComponents } from '@/components/sanity/portableTextComponents';
+
 export default function ArtworkBody({ description }) {
   return (
-    <div className="max-w-2xl mx-auto">
-      <PortableText value={description} />
+    <div className="mx-auto max-w-2xl">
+      <PortableText value={description} components={portableTextComponents} />
     </div>
   );
 }
