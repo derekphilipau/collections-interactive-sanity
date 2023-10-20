@@ -1,6 +1,6 @@
 'use client';
 
-import { Key, useEffect, useState } from 'react';
+import { Key, MutableRefObject, useEffect, useRef, useState } from 'react';
 import { ChevronUp } from 'lucide-react';
 
 import Artwork from '@/components/artwork/artwork';
@@ -19,13 +19,19 @@ export default function Gallery({ gallery }: GalleryProps) {
     setSlug(slug);
   }
 
+  const scrollable = useRef() as MutableRefObject<HTMLDivElement | null>;
+
   useEffect(() => {
     setArtwork(gallery.artworks.find((artwork) => artwork.slug === slug));
+    scrollable?.current?.scrollTo({ top: 0, behavior: 'smooth' });
   }, [slug]);
 
   return (
     <div className="flex">
-      <div className="w-3/4 h-screen overflow-y-auto  bg-neutral-950 text-white">
+      <div
+        ref={scrollable}
+        className="w-3/4 h-screen overflow-y-auto  bg-neutral-950 text-white"
+      >
         {!artwork ? (
           <GalleryInfo gallery={gallery} />
         ) : (
