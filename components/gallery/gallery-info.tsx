@@ -8,7 +8,7 @@ interface GalleryInfoProps {
 
 export default function GalleryInfo({ gallery }: GalleryInfoProps) {
   return (
-    <div className="p-8">
+    <div className="p-8 mb-12">
       <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">
         {gallery.title}
       </h1>

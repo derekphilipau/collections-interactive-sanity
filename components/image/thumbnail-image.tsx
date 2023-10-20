@@ -1,36 +1,27 @@
-import Image from 'next/image';
 import cn from 'classnames';
 
-import { urlForImage } from '@/lib/sanity/image';
+import SanityImage from './sanity-image';
 
-interface ArtworkImageProps {
+interface ThumbnailImageProps {
   title: string;
   slug?: string;
   image: any;
   priority?: boolean;
 }
 
-export default function ArtworkImage({
+export default function ThumbnailImage({
   title,
   slug,
   image: source,
   priority,
-}: ArtworkImageProps) {
+}: ThumbnailImageProps) {
   const image = source?.asset?._ref ? (
     <div
       className={cn('shadow-small', {
         'hover:shadow-medium transition-shadow duration-200': slug,
       })}
     >
-      <Image
-        className="w-full h-auto object-contain"
-        width={2000}
-        height={1000}
-        alt={`Cover Image for ${title}`}
-        src={urlForImage(source).height(1000).url()}
-        sizes="100vw"
-        priority={priority}
-      />
+      <SanityImage image={source} width={800} />
     </div>
   ) : (
     <div style={{ paddingTop: '50%', backgroundColor: '#ddd' }} />

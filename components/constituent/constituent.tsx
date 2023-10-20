@@ -10,7 +10,7 @@ interface ConstituentProps {
 export default function Constituent({ constituent }: ConstituentProps) {
   return (
     <div className="">
-      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight leading-tight md:leading-none mb-6 text-center md:text-left">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tight leading-tight md:leading-none mb-8 text-center md:text-left">
         About the Artist
       </h2>
       <div className="flex items-start gap-8">
@@ -19,9 +19,9 @@ export default function Constituent({ constituent }: ConstituentProps) {
         </div>
         <div>
           <div className="">
-            <div className="text-xl font-bold">{constituent.name}</div>
+            <div className="text-4xl font-bold">{constituent.name}</div>
             <div className="text-xl font-light">{constituent.bio}</div>
-            <div className="mt-4">
+            <div className="mt-4 text-xl">
               <PortableText
                 value={constituent.content}
                 components={portableTextComponents}

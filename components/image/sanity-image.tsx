@@ -40,9 +40,11 @@ export default function SanityImage({
         src={src}
         sizes="100vw"
       />
-      <figcaption className="italic text-muted-foreground mt-2">
-        {image.caption}
-      </figcaption>
+      {image.caption && (
+        <figcaption className="italic text-muted-foreground mt-2">
+          {image.caption}
+        </figcaption>
+      )}
     </figure>
   );
 }

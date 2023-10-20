@@ -1,5 +1,6 @@
 import Constituent from '../constituent/constituent';
-import ArtworkImage from '../image/artwork-image';
+import { ArtworkImageZoom } from '../image/artwork-image-zoom';
+import SanityImage from '../image/sanity-image';
 import ArtworkBody from './artwork-body';
 import ArtworkHeader from './artwork-header';
 
@@ -10,7 +11,7 @@ export default function Artwork({ artwork, preview = false }) {
     <article className="">
       <div className="flex items-start gap-8 p-8">
         <div className="w-[20rem] min-w-[20rem]">
-          <ArtworkImage title={artwork.title} image={artwork.image} priority />
+          <ArtworkImageZoom artwork={artwork} />
         </div>
         <div className="">
           <ArtworkHeader
@@ -21,7 +22,7 @@ export default function Artwork({ artwork, preview = false }) {
           <ArtworkBody description={artwork.description} />
         </div>
       </div>
-      <div className="mt-12 px-8 pt-8 pb-12 bg-neutral-900">
+      <div className="mt-12 px-8 pt-12 pb-20 bg-neutral-900">
         <Constituent constituent={artwork.primaryConstituent} />
       </div>
     </article>
