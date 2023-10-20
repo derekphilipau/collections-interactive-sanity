@@ -4,7 +4,7 @@ import { portableTextComponents } from '@/components/sanity/portableTextComponen
 
 export default function ArtworkBody({ description }) {
   return (
-    <div className="text-xl">
+    <div className="text-xl markdown">
       <PortableText value={description} components={portableTextComponents} />
     </div>
   );

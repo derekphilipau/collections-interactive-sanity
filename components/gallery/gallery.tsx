@@ -25,14 +25,14 @@ export default function Gallery({ gallery }: GalleryProps) {
 
   return (
     <div className="flex">
-      <div className="w-2/3 h-screen overflow-y-auto  bg-neutral-950 text-white">
+      <div className="w-3/4 h-screen overflow-y-auto  bg-neutral-950 text-white">
         {!artwork ? (
           <GalleryInfo gallery={gallery} />
         ) : (
           <Artwork artwork={artwork} />
         )}
       </div>
-      <div className="w-1/3 h-screen overflow-y-auto p-8">
+      <div className="w-1/4 h-screen overflow-y-auto p-8">
         <h1 className="text-1xl md:text-2xl lg:text-3xl font-bold tracking-tighter leading-tight md:leading-none mb-4 cursor-pointer ">
           <a
             className="text-neutral-700 hover:text-neutral-800"

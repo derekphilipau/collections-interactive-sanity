@@ -9,7 +9,7 @@ export default function Artwork({ artwork, preview = false }) {
 
   return (
     <article className="">
-      <div className="flex items-start gap-8 p-8">
+      <div className="flex items-start gap-12 p-20">
         <div className="w-[20rem] min-w-[20rem]">
           <ArtworkImageZoom artwork={artwork} />
         </div>
@@ -22,7 +22,7 @@ export default function Artwork({ artwork, preview = false }) {
           <ArtworkBody description={artwork.description} />
         </div>
       </div>
-      <div className="mt-12 px-8 pt-12 pb-20 bg-neutral-900">
+      <div className="mt-12 p-20 bg-neutral-900">
         <Constituent constituent={artwork.primaryConstituent} />
       </div>
     </article>

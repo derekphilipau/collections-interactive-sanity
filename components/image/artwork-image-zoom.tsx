@@ -33,16 +33,16 @@ export function ArtworkImageZoom({ artwork }: ArtworkImageZoomProps) {
       <div className="relative">
         <div className="flex">
           <div
-            className="min-w-0 hover:shadow-medium transition-shadow duration-200"
+            className="min-w-0 transition-colors hover:brightness-90 text-muted-foreground hover:text-white cursor-pointer"
             style={{ flex: '0 0 100%' }}
             onClick={() => setOpen(true)}
           >
             <SanityImage
               image={artwork.image}
-              className="max-h-[32rem] cursor-pointer object-contain"
+              className="cursor-pointer object-contain"
               width={800}
             />
-            <FullscreenIcon className="mt-2 h-10 w-10 cursor-pointer text-muted-foreground hover:text-white" />
+            <FullscreenIcon className="mt-2 h-10 w-10 cursor-pointer" />
           </div>
         </div>
         <Dialog open={open} onOpenChange={setOpen}>
