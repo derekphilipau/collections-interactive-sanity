@@ -51,7 +51,7 @@ export default function Gallery({ gallery }: GalleryProps) {
         <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tighter leading-tight md:leading-none mb-8">
           Artworks
         </h3>
-        <div className="columns-1 gap-4 lg:columns-2 xl:columns-3">
+        <div className="columns-1 gap-4 md:columns-1 lg:columns-2">
           {gallery.artworks?.length > 0 &&
             gallery.artworks.map((artwork: any, i: Key) => (
               <div
