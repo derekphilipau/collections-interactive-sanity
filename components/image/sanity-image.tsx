@@ -1,9 +1,10 @@
 import Image from 'next/image';
 
 import { urlForImage } from '@/lib/sanity/image';
+import type { SanityImage } from '@/types';
 
 interface SanityImageProps {
-  image: any;
+  image: SanityImage;
   height?: number;
   width?: number;
   className?: string;
@@ -36,7 +37,7 @@ export default function SanityImage({
         className="w-full h-auto object-contain"
         width={0}
         height={0}
-        alt={image.alt}
+        alt={image.alt || ''}
         src={src}
         sizes="100vw"
       />

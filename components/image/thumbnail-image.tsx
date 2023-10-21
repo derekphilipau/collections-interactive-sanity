@@ -2,10 +2,12 @@ import cn from 'classnames';
 
 import SanityImage from './sanity-image';
 
+import { SanityImage as SanityImageType } from '@/types';
+
 interface ThumbnailImageProps {
   title: string;
   slug?: string;
-  image: any;
+  image: SanityImageType;
   priority?: boolean;
 }
 

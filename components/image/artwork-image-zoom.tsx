@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { FullscreenIcon } from 'lucide-react';
+import type { Artwork } from '@/types';
 
 import { urlForImage } from '@/lib/sanity/image';
 import {
@@ -18,7 +19,7 @@ const OpenSeaDragonViewer = dynamic(() => import('./open-seadragon-viewer'), {
 });
 
 interface ArtworkImageZoomProps {
-  artwork: any;
+  artwork: Artwork;
 }
 
 export function ArtworkImageZoom({ artwork }: ArtworkImageZoomProps) {
@@ -26,7 +27,7 @@ export function ArtworkImageZoom({ artwork }: ArtworkImageZoomProps) {
 
   if (!artwork.image) return null;
 
-  const largeImageUrl = urlForImage(artwork.image.asset).width(2000).url();
+  const largeImageUrl = urlForImage(artwork.image).width(2000).url();
 
   return (
     <div className="flex flex-col items-center">
