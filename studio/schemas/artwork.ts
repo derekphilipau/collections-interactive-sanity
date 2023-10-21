@@ -43,10 +43,20 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'imageCopyright',
+      title: 'Image Copyright',
+      type: 'string',
+    }),
+    defineField({
       name: 'medium',
       title: 'Medium',
       type: 'string',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'dimensions',
+      title: 'Dimensions',
+      type: 'string',
     }),
     defineField({
       name: 'formattedDate',

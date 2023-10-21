@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
-import { FullscreenIcon } from 'lucide-react';
 import type { Artwork } from '@/types';
+import { FullscreenIcon } from 'lucide-react';
 
 import { urlForImage } from '@/lib/sanity/image';
 import {
@@ -43,6 +43,11 @@ export function ArtworkImageZoom({ artwork }: ArtworkImageZoomProps) {
               className="cursor-pointer object-contain"
               width={800}
             />
+            {artwork.imageCopyright && (
+              <div className="mt-2 text-base text-muted-foreground italic">
+                {artwork.imageCopyright}
+              </div>
+            )}
             <FullscreenIcon className="mt-2 h-10 w-10 cursor-pointer" />
           </div>
         </div>

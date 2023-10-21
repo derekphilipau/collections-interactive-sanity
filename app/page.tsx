@@ -1,6 +1,6 @@
-import type { Gallery as GalleryType, Artwork } from '@/types';
+import type { Artwork, Gallery as GalleryType } from '@/types';
 
-import { getGalleryQuery } from '@/lib/sanity/queries/gallery';
+import { getGalleryBySlugQuery } from '@/lib/sanity/queries/gallery';
 import { sanityFetch } from '@/lib/sanity/sanityFetch';
 import Gallery from '@/components/gallery/gallery';
 
@@ -10,7 +10,7 @@ type PageProps = {
 };
 
 export default async function Page({ params, searchParams }: PageProps) {
-  const galleryQuery = getGalleryQuery(process.env.DEFAULT_GALLERY_ID);
+  const galleryQuery = getGalleryBySlugQuery(process.env.DEFAULT_GALLERY_SLUG);
   const gallery = await sanityFetch<GalleryType>({ query: galleryQuery });
 
   return <Gallery gallery={gallery} />;

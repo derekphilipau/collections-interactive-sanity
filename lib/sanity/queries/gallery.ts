@@ -16,9 +16,9 @@ export const galleryFields = `
   },
 `;
 
-export function getGalleryQuery(galleryId: string | undefined) {
-  if (!galleryId) {
+export function getGalleryBySlugQuery(gallerySlug: string | undefined) {
+  if (!gallerySlug) {
     return '';
   }
-  return `*[_id == "${galleryId}"][0]{ ${galleryFields} }`;
+  return `*[_type == "gallery" && slug.current == "${gallerySlug}"][0]{ ${galleryFields} }`;
 }

@@ -5,6 +5,9 @@ export const artworkFields = `
   excerpt,
   description,
   image,
+  imageCopyright,
+  medium,
+  dimensions,
   "slug": slug.current,
   primaryConstituent->,
 `;

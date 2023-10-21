@@ -6,19 +6,23 @@ Originally based on [Blog Starter Kit with Sanity](https://vercel.com/templates/
 
 ## Demo
 
-### [https://collections-interactive-sanity-r6ixctqfm-derekphilipau.vercel.app/](https://collections-interactive-sanity-r6ixctqfm-derekphilipau.vercel.app/)
+### [https://collections-interactive-sanity-gclee9pal-derekphilipau.vercel.app//](https://collections-interactive-sanity-gclee9pal-derekphilipau.vercel.app/)
 
 # Why
 
-An exhibition designer may come across situations for which traditional in-gallery labels or space are insufficient.  The Whitney's Collection installation uses graphic label guides to help visitors find objects, while MoMA's Page Turners showcase additional exhibition material.
+An exhibition designer may come across situations for which traditional in-gallery labels or space are insufficient. The Whitney's Collection installation uses graphic label guides to help visitors find objects, while MoMA's Page Turners showcase additional exhibition material.
+
+This prototype demonstrates how one could use a CMS (in this case, Sanity) with Next.js to statically generate a web-based interactive gallery experience. The static build files could then be deployed to an in-gallery touchscreen display such as an iPad in kiosk mode. Note: This project still needs work, for example images need to be locally served.
+
+This is a prototype and not a design proposal, more work would be needed to make this viable and accessible.
+
+This is not a suggestion that in-gallery interactive touchscreens are a good idea. The Whitney's Collection installation is a great example of how to use graphic label guides to help visitors find objects.
 
 [Installation view of The Whitney’s Collection: Selections from 1900 to 1965](https://whitney.org/exhibitions/collection-1900-to-1965)
 ![screenshot](./docs/img/whitney.jpg)
 
 [MoMA In-Gallery Page Turners](https://eric.young.li/moma-page-turners/) by [Eric Li](https://eric.young.li/)
 ![MoMA In-Gallery Page Turners](./docs/img/moma.jpg)
-
-This prototype demonstrates how one could use a CMS (in this case, Sanity) with Next.js to statically generate a web-based interactive gallery experience.  The static build files could then be deployed to an in-gallery touchscreen display such as an iPad in kiosk mode.
 
 # Configuration
 

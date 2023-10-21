@@ -34,7 +34,9 @@ export interface Artwork {
   description: PortableTextBlock;
   excerpt: string;
   image: SanityImage;
-  medium: string;
+  imageCopyright?: string;
+  medium?: string;
+  dimensions?: string;
   formattedDate: string;
   primaryConstituent: Constituent;
 }

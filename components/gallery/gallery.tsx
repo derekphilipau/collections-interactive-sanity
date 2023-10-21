@@ -1,7 +1,7 @@
 'use client';
 
 import { Key, MutableRefObject, useEffect, useRef, useState } from 'react';
-import type { Gallery, Artwork as ArtworkType } from '@/types';
+import type { Artwork as ArtworkType, Gallery } from '@/types';
 import { ChevronUp } from 'lucide-react';
 
 import Artwork from '@/components/artwork/artwork';
@@ -17,33 +17,37 @@ interface GalleryProps {
 export default function Gallery({ gallery }: GalleryProps) {
   const [slug, setSlug] = useState<string | null>(null);
   const [artwork, setArtwork] = useState<ArtworkType | null>(null);
-  const timerRef = useRef<number | null>(null);
+  const galleryTimerRef = useRef<number | null>(null);
 
   function onImageClick(slug: string | null) {
     setSlug(slug);
   }
 
-  const scrollable = useRef() as MutableRefObject<HTMLDivElement | null>;
+  const galleryScrollable = useRef() as MutableRefObject<HTMLDivElement | null>;
 
   useEffect(() => {
-    setArtwork(gallery.artworks.find((artwork) => artwork.slug === slug) || null);
-    scrollable?.current?.scrollTo({ top: 0, behavior: 'smooth' });
+    setArtwork(
+      gallery.artworks.find((artwork) => artwork.slug === slug) || null
+    );
+    galleryScrollable?.current?.scrollTo({ top: 0, behavior: 'smooth' });
   }, [slug]);
 
   useEffect(() => {
-    setArtwork(gallery.artworks.find((artwork) => artwork.slug === slug) || null);
-    scrollable?.current?.scrollTo({ top: 0, behavior: 'smooth' });
+    setArtwork(
+      gallery.artworks.find((artwork) => artwork.slug === slug) || null
+    );
+    galleryScrollable?.current?.scrollTo({ top: 0, behavior: 'smooth' });
 
     if (slug) {
       // Set a timer to return to the main gallery after a period of time
-      timerRef.current = setTimeout(() => {
+      galleryTimerRef.current = setTimeout(() => {
         setSlug(null);
       }, RETURN_TO_GALLERY_TIMEOUT) as unknown as number;
     }
 
     return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
+      if (galleryTimerRef.current) {
+        clearTimeout(galleryTimerRef.current);
       }
     };
   }, [slug]);
@@ -51,7 +55,7 @@ export default function Gallery({ gallery }: GalleryProps) {
   return (
     <div className="flex">
       <div
-        ref={scrollable}
+        ref={galleryScrollable}
         className="w-3/4 h-screen overflow-y-auto  bg-neutral-950 text-white"
       >
         {!artwork ? (
@@ -61,7 +65,7 @@ export default function Gallery({ gallery }: GalleryProps) {
         )}
       </div>
       <div className="w-1/4 h-screen overflow-y-auto p-8">
-        <h1 className="text-1xl md:text-2xl lg:text-3xl font-bold tracking-tighter leading-tight md:leading-none mb-4 cursor-pointer ">
+        <h1 className="text-1xl md:text-2xl lg:text-2xl font-bold tracking-tight leading-tight md:leading-none mb-4 cursor-pointer uppercase">
           <a
             className="text-neutral-700 hover:text-neutral-800"
             onClick={() => onImageClick(null)}
@@ -70,9 +74,6 @@ export default function Gallery({ gallery }: GalleryProps) {
             {slug && <ChevronUp className="inline-block h-8 w-8 ml-4" />}
           </a>
         </h1>
-        <h3 className="text-2xl md:text-3xl lg:text-4xl font-semibold tracking-tighter leading-tight md:leading-none mb-8">
-          Artworks
-        </h3>
         <div className="columns-1 gap-4 md:columns-1 lg:columns-2">
           {gallery.artworks?.length > 0 &&
             gallery.artworks.map((artwork: ArtworkType, i: Key) => (
