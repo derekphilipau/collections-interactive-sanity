@@ -4,7 +4,8 @@ import artwork from './schemas/artwork';
 import blockContent from './schemas/blockContent';
 import constituent from './schemas/constituent';
 import gallery from './schemas/gallery';
+import galleryWall from './schemas/galleryWall';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [gallery, artwork, constituent, blockContent],
+  types: [galleryWall, gallery, artwork, constituent, blockContent],
 };

@@ -26,6 +26,26 @@ export interface Gallery {
   artworks: Artwork[];
 }
 
+export interface GalleryWall {
+  _id?: string;
+  _type?: 'gallery';
+  title: string;
+  slug: string;
+  description: PortableTextBlock;
+  excerpt: string;
+  image: SanityImage;
+  installedArtworks: InstalledArtwork[];
+}
+
+export interface InstalledArtwork {
+  _id?: string;
+  _type?: 'object';
+  width: number;
+  top: number;
+  left: number;
+  artwork: Artwork;
+}
+
 export interface Artwork {
   _id?: string;
   _type?: 'artwork';
