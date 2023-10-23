@@ -30,13 +30,6 @@ export default function Gallery({ gallery }: GalleryProps) {
       gallery.artworks.find((artwork) => artwork.slug === slug) || null
     );
     galleryScrollable?.current?.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [slug]);
-
-  useEffect(() => {
-    setArtwork(
-      gallery.artworks.find((artwork) => artwork.slug === slug) || null
-    );
-    galleryScrollable?.current?.scrollTo({ top: 0, behavior: 'smooth' });
 
     if (slug) {
       // Set a timer to return to the main gallery after a period of time
