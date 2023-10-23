@@ -6,7 +6,13 @@ Originally based on [Blog Starter Kit with Sanity](https://vercel.com/templates/
 
 ## Demo
 
-### [https://collections-interactive-sanity-gclee9pal-derekphilipau.vercel.app//](https://collections-interactive-sanity-gclee9pal-derekphilipau.vercel.app/)
+### "Wall" View
+
+[https://collections-interactive-sanity-5f20nxnof-derekphilipau.vercel.app/wall](https://collections-interactive-sanity-5f20nxnof-derekphilipau.vercel.app/wall)
+
+### Traditional thumbnail View
+
+[https://collections-interactive-sanity-5f20nxnof-derekphilipau.vercel.app/](https://collections-interactive-sanity-5f20nxnof-derekphilipau.vercel.app/)
 
 # Why
 
@@ -55,7 +61,7 @@ npx vercel env pull
 Build the project:
 
 ```bash
-npm vercel build
+npx vercel build
 ```
 
 Deploy the prebuilt project:
@@ -66,9 +72,15 @@ npx vercel deploy --prebuilt
 
 # Screenshots
 
+Screenshot of "Wall" gallery:
+
+![Wall screenshot](./docs/img/wall.jpg)
+
+![Wall Open screenshot](./docs/img/wall_open.jpg)
+
 Screenshot of the interactive gallery:
 
-![gallery screenshot](./docs/img/gallery.jpg)
+![Gallery screenshot](./docs/img/gallery.jpg)
 
 Screenshot of the Sanity Studio, editing an Artwork:
 

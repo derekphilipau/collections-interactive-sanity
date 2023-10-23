@@ -51,19 +51,30 @@ export default function GalleryWall({ galleryWall }: GalleryWallProps) {
     };
   }, [slug]);
 
+  const titleStyle = {
+    width: `100%`,
+    bottom: `2%`,
+    left: `2%`,
+  };
   return (
-    <section className="relative h-screen w-screen overflow-x-scroll bg-neutral-800">
-      {galleryWall.installedArtworks?.length > 0 &&
-        galleryWall.installedArtworks.map(
-          (installedArtwork: InstalledArtwork, i: Key) => (
-            <InstalledArtworkCard
-              key={i}
-              installedArtwork={installedArtwork}
-              onImageClick={onImageClick}
-            />
-          )
-        )}
-
+    <section className="">
+      <div className="relative h-screen w-screen overflow-x-scroll bg-neutral-800 bg-gradient-to-t from-neutral-900 to-neutral-800">
+        <div className="absolute z-40" style={titleStyle}>
+          <h1 className="text-white text-5xl font-bold tracking-tight leading-tight md:leading-none mb-4 cursor-pointer uppercase">
+            {galleryWall.title}
+          </h1>
+        </div>
+        {galleryWall.installedArtworks?.length > 0 &&
+          galleryWall.installedArtworks.map(
+            (installedArtwork: InstalledArtwork, i: Key) => (
+              <InstalledArtworkCard
+                key={i}
+                installedArtwork={installedArtwork}
+                onImageClick={onImageClick}
+              />
+            )
+          )}
+      </div>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent side="left" className="w-1/2 bg-black pt-14">
           <ScrollArea className="h-full overflow-y-auto pr-12 text-white">
