@@ -1,6 +1,6 @@
 # A statically generated interactive gallery using Next.js and Sanity
 
-This example showcases an image gallery using Next.js's [Static Exports](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports) feature using [Sanity](https://www.sanity.io/) as the data source.
+This example showcases a multilingual image gallery using Next.js's [Static Exports](https://nextjs.org/docs/pages/building-your-application/deploying/static-exports) feature using [Sanity](https://www.sanity.io/) as the data source.
 
 Originally based on [Blog Starter Kit with Sanity](https://vercel.com/templates/next.js/blog-next-sanity).
 
@@ -14,11 +14,13 @@ Originally based on [Blog Starter Kit with Sanity](https://vercel.com/templates/
 
 An exhibition designer may come across situations for which traditional in-gallery labels or space are insufficient. The Whitney's Collection installation uses graphic label guides to help visitors find objects, while MoMA's Page Turners showcase additional exhibition material.
 
-This prototype demonstrates how one could use a CMS (in this case, Sanity) with Next.js to statically generate a web-based interactive gallery experience. The static build files could then be deployed to an in-gallery touchscreen display such as an iPad in kiosk mode. Note: This project still needs work, for example images need to be locally served.
+This prototype demonstrates how one could use a CMS (in this case, Sanity) with Next.js to statically generate a web-based interactive gallery. The static build files could then be deployed to an in-gallery touchscreen display such as an iPad in kiosk mode. Note: This project still needs work, for example images need to be locally served.
 
 This is a prototype and not a design proposal, more work would be needed to make this viable and accessible.
 
-This is not a suggestion that in-gallery interactive touchscreens are a good idea. The Whitney's Collection installation is a great example of how to use graphic label guides to help visitors find objects.
+This is not a suggestion that in-gallery interactive touchscreens are necessarily a good idea. In particular, they require maintenance and have accessiblity issues.
+
+The Whitney's Collection installation is a great example of how to use physical, graphic label guides to help visitors find objects in a complicated installation, instead of resorting to touchscreens.
 
 [Installation view of The Whitney’s Collection: Selections from 1900 to 1965](https://whitney.org/exhibitions/collection-1900-to-1965)
 ![screenshot](./docs/img/whitney.jpg)
