@@ -77,7 +77,7 @@ export default function GalleryWall({ galleryWall }: GalleryWallProps) {
       </div>
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent side="left" className="w-1/2 bg-black pt-14">
-          <ScrollArea className="h-full overflow-y-auto pr-12 text-white">
+          <ScrollArea className="h-full overflow-y-auto px-12 pt-2 pb-12 text-white">
             <WallArtwork artwork={installedArtwork?.artwork} />
           </ScrollArea>
         </SheetContent>

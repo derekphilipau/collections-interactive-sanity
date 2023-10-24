@@ -53,9 +53,9 @@ export default defineType({
           type: 'object',
           fields: [
             { name: 'artwork', type: 'reference', to: [{ type: 'artwork' }] },
-            { name: 'width', type: 'number', title: 'Width (px)' },
-            { name: 'top', type: 'number', title: 'Top (px)' },
-            { name: 'left', type: 'number', title: 'Left (px)' },
+            { name: 'width', type: 'number', title: 'Width (%)' },
+            { name: 'top', type: 'number', title: 'Top (%)' },
+            { name: 'left', type: 'number', title: 'Left (%)' },
           ],
           preview: {
             select: {

@@ -14,6 +14,11 @@ export default function WallArtwork({ artwork, preview = false }) {
       <div className="flex justify-center w-full">
         <div className="w-3/4">
           <SanityImage image={artwork.image} />
+          {artwork.imageCopyright && (
+            <div className="mt-2 text-base text-muted-foreground italic">
+              {artwork.imageCopyright}
+            </div>
+          )}
         </div>
       </div>
       <div className="">
