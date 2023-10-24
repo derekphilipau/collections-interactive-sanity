@@ -58,7 +58,7 @@ export default function GalleryWall({ galleryWall }: GalleryWallProps) {
   };
   return (
     <section className="">
-      <div className="relative h-screen w-screen overflow-x-scroll bg-neutral-800 bg-gradient-to-t from-neutral-900 to-neutral-800">
+      <div className="relative h-screen w-screen overflow-x-hidden bg-neutral-800 bg-gradient-to-t from-neutral-900 to-neutral-800">
         <div className="absolute z-40" style={titleStyle}>
           <h1 className="text-white text-5xl font-bold tracking-tight leading-tight md:leading-none mb-4 cursor-pointer uppercase">
             {galleryWall.title}
