@@ -11,7 +11,7 @@ type PageProps = {
 
 export default async function Page({ params, searchParams }: PageProps) {
   const galleryWallQuery = getGalleryWallBySlugQuery(
-    process.env.DEFAULT_GALLERY_SLUG
+    process.env.DEFAULT_GALLERY_SLUG_EN
   );
   const galleryWall = await sanityFetch<GalleryWallType>({
     query: galleryWallQuery,

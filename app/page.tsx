@@ -10,8 +10,10 @@ type PageProps = {
 };
 
 export default async function Page({ params, searchParams }: PageProps) {
-  const galleryQuery = getGalleryBySlugQuery(process.env.DEFAULT_GALLERY_SLUG);
+  const galleryQuery = getGalleryBySlugQuery(
+    process.env.DEFAULT_GALLERY_SLUG_EN
+  );
   const gallery = await sanityFetch<GalleryType>({ query: galleryQuery });
-
+  console.log(gallery.artworks[0]);
   return <Gallery gallery={gallery} />;
 }

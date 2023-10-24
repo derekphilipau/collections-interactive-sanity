@@ -6,6 +6,7 @@ import type { Artwork } from '@/types';
 import { FullscreenIcon } from 'lucide-react';
 
 import { urlForImage } from '@/lib/sanity/image';
+import { getTranslation } from '@/lib/utils';
 import {
   Dialog,
   DialogContent,
@@ -20,9 +21,10 @@ const OpenSeaDragonViewer = dynamic(() => import('./open-seadragon-viewer'), {
 
 interface ArtworkImageZoomProps {
   artwork: Artwork;
+  lang: string;
 }
 
-export function ArtworkImageZoom({ artwork }: ArtworkImageZoomProps) {
+export function ArtworkImageZoom({ artwork, lang }: ArtworkImageZoomProps) {
   const [open, setOpen] = useState(false);
 
   if (!artwork.image) return null;
@@ -52,7 +54,7 @@ export function ArtworkImageZoom({ artwork }: ArtworkImageZoomProps) {
         <DialogContent className="h-full max-w-none p-0">
           <DialogHeader className="pt-2 z-50 h-20 bg-white p-4 dark:bg-neutral-900 sm:p-4 sm:text-left">
             <DialogTitle className="mt-1 px-2 text-base font-semibold sm:px-0 sm:text-2xl">
-              {artwork.title}
+              {getTranslation(artwork.title, lang)}
             </DialogTitle>
           </DialogHeader>
           <div className="h-full w-full overflow-y-scroll">

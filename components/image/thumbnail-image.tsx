@@ -1,28 +1,19 @@
+import { SanityImage as SanityImageType } from '@/types';
 import cn from 'classnames';
 
 import SanityImage from './sanity-image';
 
-import { SanityImage as SanityImageType } from '@/types';
-
 interface ThumbnailImageProps {
   title: string;
-  slug?: string;
   image: SanityImageType;
-  priority?: boolean;
 }
 
 export default function ThumbnailImage({
   title,
-  slug,
   image: source,
-  priority,
 }: ThumbnailImageProps) {
   const image = source?.asset?._ref ? (
-    <div
-      className={cn('shadow-small', {
-        'hover:shadow-medium transition-shadow duration-200': slug,
-      })}
-    >
+    <div className="shadow-small hover:shadow-medium transition-shadow duration-200">
       <SanityImage image={source} width={800} />
     </div>
   ) : (

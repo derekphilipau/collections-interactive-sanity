@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
+import { i18n } from '../../../languages';
+
 export default defineType({
   name: 'constituent',
   title: 'Constituent',
@@ -8,29 +10,19 @@ export default defineType({
     defineField({
       name: 'name',
       title: 'Name',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'name',
-        maxLength: 96,
-      },
+      type: 'localizedString',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'bio',
       title: 'Bio',
-      type: 'string',
+      type: 'localizedString',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'content',
       title: 'Content',
-      type: 'blockContent',
+      type: 'localizedBlockContent',
     }),
     defineField({
       name: 'image',
@@ -39,4 +31,11 @@ export default defineType({
       options: { hotspot: true },
     }),
   ],
+  preview: {
+    select: {
+      title: `name.${i18n.base}`,
+      subtitle: `bio.${i18n.base}`,
+      media: 'image',
+    },
+  },
 });

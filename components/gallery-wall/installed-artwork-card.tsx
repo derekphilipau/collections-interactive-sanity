@@ -1,12 +1,15 @@
 import type { InstalledArtwork } from '@/types';
 
+import { getTranslation } from '@/lib/utils';
 import ThumbnailImage from '../image/thumbnail-image';
 
 export function InstalledArtworkCard({
   installedArtwork,
+  lang,
   onImageClick,
 }: {
   installedArtwork: any;
+  lang: string;
   onImageClick: (installedArtwork: InstalledArtwork) => void;
 }) {
   if (!installedArtwork) return null;
@@ -24,10 +27,8 @@ export function InstalledArtworkCard({
       onClick={() => onImageClick(installedArtwork)}
     >
       <ThumbnailImage
-        title={installedArtwork.artwork.title}
+        title={getTranslation(installedArtwork.artwork.title, lang)}
         image={installedArtwork.artwork.image}
-        slug={installedArtwork.artwork.slug}
-        priority
       />
     </div>
   );

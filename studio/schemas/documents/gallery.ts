@@ -1,20 +1,22 @@
 import { defineField, defineType } from 'sanity';
 
+import { i18n } from '../../../languages';
+
 export default defineType({
-  name: 'galleryWall',
-  title: 'Gallery Wall',
+  name: 'gallery',
+  title: 'Gallery',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'string',
+      type: 'localizedString',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
-      type: 'slug',
+      type: 'localizedSlug',
       options: {
         source: 'title',
         maxLength: 96,
@@ -24,13 +26,7 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'blockContent',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      type: 'string',
+      type: 'localizedBlockContent',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -44,32 +40,19 @@ export default defineType({
     }),
     defineField({
       title: 'Artworks',
-      name: 'installedArtworks',
+      name: 'artworks',
       type: 'array',
       of: [
         {
-          title: 'Installed Artwork',
-          name: 'installedArtwork',
-          type: 'object',
-          fields: [
-            { name: 'artwork', type: 'reference', to: [{ type: 'artwork' }] },
-            { name: 'width', type: 'number', title: 'Width (%)' },
-            { name: 'top', type: 'number', title: 'Top (%)' },
-            { name: 'left', type: 'number', title: 'Left (%)' },
-          ],
-          preview: {
-            select: {
-              title: 'artwork.title',
-              media: 'artwork.image',
-            },
-          },
+          type: 'reference',
+          to: [{ type: 'artwork' }],
         },
       ],
     }),
   ],
   preview: {
     select: {
-      title: 'title',
+      title: `title.${i18n.base}`,
       media: 'image',
     },
   },

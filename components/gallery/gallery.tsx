@@ -4,6 +4,7 @@ import { Key, MutableRefObject, useEffect, useRef, useState } from 'react';
 import type { Artwork as ArtworkType, Gallery } from '@/types';
 import { ChevronUp } from 'lucide-react';
 
+import { getTranslation } from '@/lib/utils';
 import Artwork from '@/components/artwork/artwork';
 import GalleryInfo from '@/components/gallery/gallery-info';
 import ThumbnailImage from '@/components/image/thumbnail-image';
@@ -15,26 +16,27 @@ interface GalleryProps {
 }
 
 export default function Gallery({ gallery }: GalleryProps) {
-  const [slug, setSlug] = useState<string | null>(null);
+  const [lang, setLang] = useState<string>('en');
+  const [documentId, setDocumentId] = useState<string | null>(null);
   const [artwork, setArtwork] = useState<ArtworkType | null>(null);
   const galleryTimerRef = useRef<number | null>(null);
 
-  function onImageClick(slug: string | null) {
-    setSlug(slug);
+  function onImageClick(documentId: string | null) {
+    setDocumentId(documentId);
   }
 
   const galleryScrollable = useRef() as MutableRefObject<HTMLDivElement | null>;
 
   useEffect(() => {
     setArtwork(
-      gallery.artworks.find((artwork) => artwork.slug === slug) || null
+      gallery.artworks.find((artwork) => artwork._id === documentId) || null
     );
     galleryScrollable?.current?.scrollTo({ top: 0, behavior: 'smooth' });
 
-    if (slug) {
+    if (documentId) {
       // Set a timer to return to the main gallery after a period of time
       galleryTimerRef.current = setTimeout(() => {
-        setSlug(null);
+        setDocumentId(null);
       }, RETURN_TO_GALLERY_TIMEOUT) as unknown as number;
     }
 
@@ -43,7 +45,7 @@ export default function Gallery({ gallery }: GalleryProps) {
         clearTimeout(galleryTimerRef.current);
       }
     };
-  }, [slug]);
+  }, [documentId]);
 
   return (
     <div className="flex">
@@ -52,19 +54,31 @@ export default function Gallery({ gallery }: GalleryProps) {
         className="w-3/4 h-screen overflow-y-auto  bg-neutral-950 text-white"
       >
         {!artwork ? (
-          <GalleryInfo gallery={gallery} />
+          <GalleryInfo gallery={gallery} lang={lang} />
         ) : (
-          <Artwork artwork={artwork} />
+          <Artwork artwork={artwork} lang={lang} />
         )}
       </div>
-      <div className="w-1/4 h-screen overflow-y-auto p-8">
-        <h1 className="text-1xl md:text-2xl lg:text-2xl font-bold tracking-tight leading-tight md:leading-none mb-4 cursor-pointer uppercase">
+      <div className="w-1/4 h-screen overflow-y-auto p-8 bg-neutral-800 bg-gradient-to-t from-neutral-900 to-neutral-800 text-white">
+        <div className="mb-4 text-xl text-muted font-bold tracking-tight leading-tight md:leading-none">
+          {lang !== 'es' && (
+            <a className="cursor-pointer" onClick={() => setLang('es')}>
+              Español
+            </a>
+          )}
+          {lang !== 'en' && (
+            <a className="cursor-pointer" onClick={() => setLang('en')}>
+              English
+            </a>
+          )}
+        </div>
+        <h1 className="text-xl md:text-2xl font-bold tracking-tight leading-tight md:leading-none mb-4 cursor-pointer uppercase">
           <a
-            className="text-neutral-700 hover:text-neutral-800"
+            className="text-white hover:text-neutral-100"
             onClick={() => onImageClick(null)}
           >
-            {gallery.title}
-            {slug && <ChevronUp className="inline-block h-8 w-8 ml-4" />}
+            {getTranslation(gallery.title, lang)}
+            {documentId && <ChevronUp className="inline-block h-8 w-8 ml-4" />}
           </a>
         </h1>
         <div className="columns-1 gap-4 md:columns-1 lg:columns-2">
@@ -73,13 +87,11 @@ export default function Gallery({ gallery }: GalleryProps) {
               <div
                 key={i}
                 className="mb-8 flex items-center justify-center bg-neutral-50 text-neutral-200 transition-colors hover:bg-neutral-100 hover:brightness-90 hover:text-neutral-300 dark:bg-neutral-800 dark:text-neutral-900 dark:hover:bg-neutral-700  dark:hover:text-neutral-800 cursor-pointer"
-                onClick={() => onImageClick(artwork.slug)}
+                onClick={() => onImageClick(artwork._id)}
               >
                 <ThumbnailImage
-                  title={artwork.title}
+                  title={getTranslation(artwork.title, lang)}
                   image={artwork.image}
-                  slug={artwork.slug}
-                  priority
                 />
               </div>
             ))}

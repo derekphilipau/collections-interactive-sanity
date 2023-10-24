@@ -3,13 +3,7 @@ import { artworkFields } from './artwork';
 export const galleryWallFields = `
   _id,
   title,
-  description[]{
-    ...,
-    _type == "image" => {
-      ...,
-      asset->
-    }
-  },
+  description,
   image,
   installedArtworks[]{
     artwork->{
@@ -25,5 +19,5 @@ export function getGalleryWallBySlugQuery(galleryWallSlug: string | undefined) {
   if (!galleryWallSlug) {
     return '';
   }
-  return `*[_type == "galleryWall" && slug.current == "${galleryWallSlug}"][0]{ ${galleryWallFields} }`;
+  return `*[_type == "galleryWall" && slug.en.current == "${galleryWallSlug}"][0]{ ${galleryWallFields} }`;
 }

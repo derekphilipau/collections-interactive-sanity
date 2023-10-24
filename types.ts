@@ -15,13 +15,22 @@ export interface SanityImage {
   caption?: string;
 }
 
+export interface LocalizedString {
+  en?: string;
+  es?: string;
+}
+
+export interface LocalizedPortableTextBlock {
+  en?: PortableTextBlock;
+  es?: PortableTextBlock;
+}
+
 export interface Gallery {
-  _id?: string;
-  _type?: 'gallery';
-  title: string;
-  slug: string;
-  description: PortableTextBlock;
-  excerpt: string;
+  _id: string;
+  _type: 'gallery';
+  title: LocalizedString;
+  slug: LocalizedString;
+  description: LocalizedPortableTextBlock;
   image: SanityImage;
   artworks: Artwork[];
 }
@@ -29,17 +38,16 @@ export interface Gallery {
 export interface GalleryWall {
   _id?: string;
   _type?: 'gallery';
-  title: string;
-  slug: string;
-  description: PortableTextBlock;
-  excerpt: string;
+  title: LocalizedString;
+  slug: LocalizedString;
+  description: LocalizedPortableTextBlock;
   image: SanityImage;
   installedArtworks: InstalledArtwork[];
 }
 
 export interface InstalledArtwork {
-  _id?: string;
-  _type?: 'object';
+  _id: string;
+  _type: 'object';
   width: number;
   top: number;
   left: number;
@@ -47,26 +55,23 @@ export interface InstalledArtwork {
 }
 
 export interface Artwork {
-  _id?: string;
-  _type?: 'artwork';
-  title: string;
-  slug: string;
-  description: PortableTextBlock;
-  excerpt: string;
+  _id: string;
+  _type: 'artwork';
+  title: LocalizedString;
+  description: LocalizedPortableTextBlock;
   image: SanityImage;
   imageCopyright?: string;
-  medium?: string;
+  medium?: LocalizedString;
   dimensions?: string;
   formattedDate: string;
   primaryConstituent: Constituent;
 }
 
 export interface Constituent {
-  _id?: string;
-  _type?: 'constituent';
-  name: string;
-  slug: string;
-  bio: string;
-  content: PortableTextBlock;
+  _id: string;
+  _type: 'constituent';
+  name: LocalizedString;
+  bio: LocalizedString;
+  content: LocalizedPortableTextBlock;
   image: SanityImage;
 }

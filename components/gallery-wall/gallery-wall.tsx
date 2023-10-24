@@ -3,8 +3,10 @@
 import { Key, MutableRefObject, useEffect, useRef, useState } from 'react';
 import type { GalleryWall, InstalledArtwork } from '@/types';
 
+import { getTranslation } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent } from '@/components/ui/sheet-custom';
+import { Button } from '../ui/button-custom';
 import { InstalledArtworkCard } from './installed-artwork-card';
 import WallArtwork from './wall-artwork';
 
@@ -15,7 +17,8 @@ interface GalleryWallProps {
 }
 
 export default function GalleryWall({ galleryWall }: GalleryWallProps) {
-  const [slug, setSlug] = useState<string | null>(null);
+  const [lang, setLang] = useState<string>('en');
+  const [documentId, setDocumentId] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [installedArtwork, setInstalledArtwork] =
     useState<InstalledArtwork | null>(null);
@@ -23,7 +26,7 @@ export default function GalleryWall({ galleryWall }: GalleryWallProps) {
 
   function onImageClick(installedArtwork: InstalledArtwork | null) {
     setInstalledArtwork(installedArtwork);
-    console.log('clicked ' + installedArtwork?.artwork.slug);
+    console.log('clicked ' + installedArtwork?.artwork._id);
     setOpen(true);
   }
 
@@ -32,15 +35,15 @@ export default function GalleryWall({ galleryWall }: GalleryWallProps) {
   useEffect(() => {
     setInstalledArtwork(
       galleryWall.installedArtworks.find(
-        (installedArtwork) => installedArtwork.artwork?.slug === slug
+        (installedArtwork) => installedArtwork.artwork?._id === documentId
       ) || null
     );
     galleryScrollable?.current?.scrollTo({ top: 0, behavior: 'smooth' });
 
-    if (slug) {
+    if (documentId) {
       // Set a timer to return to the main gallery after a period of time
       galleryTimerRef.current = setTimeout(() => {
-        setSlug(null);
+        setDocumentId(null);
       }, RETURN_TO_GALLERY_TIMEOUT) as unknown as number;
     }
 
@@ -49,20 +52,40 @@ export default function GalleryWall({ galleryWall }: GalleryWallProps) {
         clearTimeout(galleryTimerRef.current);
       }
     };
-  }, [slug]);
+  }, [documentId]);
 
   const titleStyle = {
-    width: `100%`,
-    bottom: `2%`,
+    bottom: `3%`,
     left: `2%`,
   };
+
+  const langStyle = {
+    bottom: `3%`,
+    right: '3%',
+  };
+
   return (
     <section className="">
       <div className="relative h-screen w-screen overflow-x-hidden bg-neutral-800 bg-gradient-to-t from-neutral-900 to-neutral-800">
         <div className="absolute z-40" style={titleStyle}>
-          <h1 className="text-white text-5xl font-bold tracking-tight leading-tight md:leading-none mb-4 cursor-pointer uppercase">
-            {galleryWall.title}
+          <h1 className="text-white text-xl md:text-3xl lg:text-5xl font-bold tracking-tight leading-tight md:leading-none cursor-pointer uppercase">
+            {getTranslation(galleryWall.title, lang)}
           </h1>
+        </div>
+        <div
+          className="absolute z-50 text-xl text-muted font-bold tracking-tight leading-tight md:leading-none"
+          style={langStyle}
+        >
+          {lang !== 'es' && (
+            <Button variant="custom" size="xl" onClick={() => setLang('es')}>
+              Español
+            </Button>
+          )}
+          {lang !== 'en' && (
+            <Button variant="custom" size="xl" onClick={() => setLang('en')}>
+              English
+            </Button>
+          )}
         </div>
         {galleryWall.installedArtworks?.length > 0 &&
           galleryWall.installedArtworks.map(
@@ -70,6 +93,7 @@ export default function GalleryWall({ galleryWall }: GalleryWallProps) {
               <InstalledArtworkCard
                 key={i}
                 installedArtwork={installedArtwork}
+                lang={lang}
                 onImageClick={onImageClick}
               />
             )
@@ -78,7 +102,7 @@ export default function GalleryWall({ galleryWall }: GalleryWallProps) {
       <Sheet open={open} onOpenChange={setOpen}>
         <SheetContent side="left" className="w-1/2 bg-black pt-14">
           <ScrollArea className="h-full overflow-y-auto px-12 pt-2 pb-12 text-white">
-            <WallArtwork artwork={installedArtwork?.artwork} />
+            <WallArtwork artwork={installedArtwork?.artwork} lang={lang} />
           </ScrollArea>
         </SheetContent>
       </Sheet>

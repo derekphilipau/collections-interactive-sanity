@@ -1,20 +1,22 @@
 import { defineField, defineType } from 'sanity';
 
+import { i18n } from '../../../languages';
+
 export default defineType({
-  name: 'gallery',
-  title: 'Gallery',
+  name: 'galleryWall',
+  title: 'Gallery Wall',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'string',
+      type: 'localizedString',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
-      type: 'slug',
+      type: 'localizedSlug',
       options: {
         source: 'title',
         maxLength: 96,
@@ -24,13 +26,7 @@ export default defineType({
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'blockContent',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      type: 'string',
+      type: 'localizedBlockContent',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -44,19 +40,33 @@ export default defineType({
     }),
     defineField({
       title: 'Artworks',
-      name: 'artworks',
+      name: 'installedArtworks',
       type: 'array',
       of: [
         {
-          type: 'reference',
-          to: [{ type: 'artwork' }],
+          title: 'Installed Artwork',
+          name: 'installedArtwork',
+          type: 'object',
+          fields: [
+            { name: 'artwork', type: 'reference', to: [{ type: 'artwork' }] },
+            { name: 'width', type: 'number', title: 'Width (%)' },
+            { name: 'top', type: 'number', title: 'Top (%)' },
+            { name: 'left', type: 'number', title: 'Left (%)' },
+          ],
+          preview: {
+            select: {
+              title: `artwork.title.${i18n.base}`,
+              subtitle: `artwork.primaryConstituent.name.${i18n.base}`,
+              media: 'artwork.image',
+            },
+          },
         },
       ],
     }),
   ],
   preview: {
     select: {
-      title: 'title',
+      title: `title.${i18n.base}`,
       media: 'image',
     },
   },

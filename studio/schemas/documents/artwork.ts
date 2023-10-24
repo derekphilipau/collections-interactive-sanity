@@ -1,5 +1,7 @@
 import { defineField, defineType } from 'sanity';
 
+import { i18n } from '../../../languages';
+
 export default defineType({
   name: 'artwork',
   title: 'Artwork',
@@ -8,29 +10,13 @@ export default defineType({
     defineField({
       name: 'title',
       title: 'Title',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'title',
-        maxLength: 96,
-      },
+      type: 'localizedString',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'description',
       title: 'Description',
-      type: 'blockContent',
-      validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'excerpt',
-      title: 'Excerpt',
-      type: 'string',
+      type: 'localizedBlockContent',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -50,7 +36,7 @@ export default defineType({
     defineField({
       name: 'medium',
       title: 'Medium',
-      type: 'string',
+      type: 'localizedString',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -74,8 +60,8 @@ export default defineType({
   ],
   preview: {
     select: {
-      title: 'title',
-      author: 'primaryConstituent.name',
+      title: `title.${i18n.base}`,
+      author: `primaryConstituent.name.${i18n.base}`,
       media: 'image',
     },
     prepare(selection) {
