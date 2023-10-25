@@ -6,8 +6,8 @@ import type { GalleryWall, InstalledArtwork } from '@/types';
 import { getTranslation } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent } from '@/components/ui/sheet-custom';
+import ThumbnailImage from '../image/thumbnail-image';
 import { Button } from '../ui/button-custom';
-import { InstalledArtworkCard } from './installed-artwork-card';
 import WallArtwork from './wall-artwork';
 
 interface GalleryWallProps {
@@ -25,27 +25,26 @@ export default function GalleryWall({ galleryWall }: GalleryWallProps) {
     setOpen(true);
   }
 
-  const titleStyle = {
-    bottom: `3%`,
-    left: `2%`,
-  };
-
-  const langStyle = {
-    bottom: `3%`,
-    right: '3%',
-  };
-
   return (
     <section className="">
       <div className="relative h-screen w-screen overflow-x-hidden bg-neutral-800 bg-gradient-to-t from-neutral-900 to-neutral-800">
-        <div className="absolute z-40" style={titleStyle}>
+        <div
+          className="absolute z-40"
+          style={{
+            bottom: `3%`,
+            left: `2%`,
+          }}
+        >
           <h1 className="text-white text-xl md:text-3xl lg:text-5xl font-bold tracking-tight leading-tight md:leading-none cursor-pointer uppercase">
             {getTranslation(galleryWall.title, lang)}
           </h1>
         </div>
         <div
           className="absolute z-50 text-xl text-muted font-bold tracking-tight leading-tight md:leading-none"
-          style={langStyle}
+          style={{
+            bottom: `3%`,
+            right: '3%',
+          }}
         >
           {lang !== 'es' && (
             <Button variant="custom" size="xl" onClick={() => setLang('es')}>
@@ -61,12 +60,20 @@ export default function GalleryWall({ galleryWall }: GalleryWallProps) {
         {galleryWall.installedArtworks?.length > 0 &&
           galleryWall.installedArtworks.map(
             (installedArtwork: InstalledArtwork, i: Key) => (
-              <InstalledArtworkCard
-                key={i}
-                installedArtwork={installedArtwork}
-                lang={lang}
-                onImageClick={onImageClick}
-              />
+              <div
+                className="absolute drop-shadow-lg hover:outline outline-offset-4 hover:outline-1 outline-white cursor-pointer"
+                style={{
+                  width: `${installedArtwork.width}%`,
+                  top: `${installedArtwork.top}%`,
+                  left: `${installedArtwork.left}%`,
+                }}
+                onClick={() => onImageClick(installedArtwork)}
+              >
+                <ThumbnailImage
+                  title={getTranslation(installedArtwork.artwork.title, lang)}
+                  image={installedArtwork.artwork.image}
+                />
+              </div>
             )
           )}
       </div>
