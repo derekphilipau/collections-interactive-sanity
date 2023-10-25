@@ -17,35 +17,34 @@ interface GalleryProps {
 
 export default function Gallery({ gallery }: GalleryProps) {
   const [lang, setLang] = useState<string>('en');
-  const [documentId, setDocumentId] = useState<string | null>(null);
   const [artwork, setArtwork] = useState<ArtworkType | null>(null);
   const galleryTimerRef = useRef<number | null>(null);
-
-  function onImageClick(documentId: string | null) {
-    setDocumentId(documentId);
-  }
-
   const galleryScrollable = useRef() as MutableRefObject<HTMLDivElement | null>;
 
   useEffect(() => {
-    setArtwork(
-      gallery.artworks.find((artwork) => artwork._id === documentId) || null
-    );
-    galleryScrollable?.current?.scrollTo({ top: 0, behavior: 'smooth' });
-
-    if (documentId) {
-      // Set a timer to return to the main gallery after a period of time
-      galleryTimerRef.current = setTimeout(() => {
-        setDocumentId(null);
-      }, RETURN_TO_GALLERY_TIMEOUT) as unknown as number;
-    }
-
     return () => {
       if (galleryTimerRef.current) {
         clearTimeout(galleryTimerRef.current);
       }
     };
-  }, [documentId]);
+  }, []);
+
+  function onImageClick(artwork: ArtworkType | null) {
+    if (galleryTimerRef.current) {
+      clearTimeout(galleryTimerRef.current);
+      galleryTimerRef.current = null;
+    }
+
+    setArtwork(artwork);
+    galleryScrollable?.current?.scrollTo({ top: 0, behavior: 'smooth' });
+
+    if (artwork) {
+      // Set a timer to return to the main gallery after a period of time
+      galleryTimerRef.current = setTimeout(() => {
+        setArtwork(null);
+      }, RETURN_TO_GALLERY_TIMEOUT) as unknown as number;
+    }
+  }
 
   return (
     <div className="flex">
@@ -78,7 +77,7 @@ export default function Gallery({ gallery }: GalleryProps) {
             onClick={() => onImageClick(null)}
           >
             {getTranslation(gallery.title, lang)}
-            {documentId && <ChevronUp className="inline-block h-8 w-8 ml-4" />}
+            {artwork && <ChevronUp className="inline-block h-8 w-8 ml-4" />}
           </a>
         </h1>
         <div className="columns-1 gap-4 md:columns-1 lg:columns-2">
@@ -87,7 +86,7 @@ export default function Gallery({ gallery }: GalleryProps) {
               <div
                 key={i}
                 className="mb-8 flex items-center justify-center bg-neutral-50 text-neutral-200 transition-colors hover:bg-neutral-100 hover:brightness-90 hover:text-neutral-300 dark:bg-neutral-800 dark:text-neutral-900 dark:hover:bg-neutral-700  dark:hover:text-neutral-800 cursor-pointer"
-                onClick={() => onImageClick(artwork._id)}
+                onClick={() => onImageClick(artwork)}
               >
                 <ThumbnailImage
                   title={getTranslation(artwork.title, lang)}

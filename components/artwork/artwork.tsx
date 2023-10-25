@@ -14,7 +14,6 @@ interface ArtworkProps {
 }
 
 export default function Artwork({ artwork, lang }: ArtworkProps) {
-  console.log(artwork);
   return (
     <article className="">
       <div className="flex items-start gap-12 p-20">

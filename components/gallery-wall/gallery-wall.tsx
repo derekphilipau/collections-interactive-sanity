@@ -1,6 +1,6 @@
 'use client';
 
-import { Key, MutableRefObject, useEffect, useRef, useState } from 'react';
+import { Key, useState } from 'react';
 import type { GalleryWall, InstalledArtwork } from '@/types';
 
 import { getTranslation } from '@/lib/utils';
@@ -10,49 +10,20 @@ import { Button } from '../ui/button-custom';
 import { InstalledArtworkCard } from './installed-artwork-card';
 import WallArtwork from './wall-artwork';
 
-const RETURN_TO_GALLERY_TIMEOUT = 5 * 60 * 1000; // 5 minutes
-
 interface GalleryWallProps {
   galleryWall: GalleryWall;
 }
 
 export default function GalleryWall({ galleryWall }: GalleryWallProps) {
   const [lang, setLang] = useState<string>('en');
-  const [documentId, setDocumentId] = useState<string | null>(null);
   const [open, setOpen] = useState(false);
   const [installedArtwork, setInstalledArtwork] =
     useState<InstalledArtwork | null>(null);
-  const galleryTimerRef = useRef<number | null>(null);
 
   function onImageClick(installedArtwork: InstalledArtwork | null) {
     setInstalledArtwork(installedArtwork);
-    console.log('clicked ' + installedArtwork?.artwork._id);
     setOpen(true);
   }
-
-  const galleryScrollable = useRef() as MutableRefObject<HTMLDivElement | null>;
-
-  useEffect(() => {
-    setInstalledArtwork(
-      galleryWall.installedArtworks.find(
-        (installedArtwork) => installedArtwork.artwork?._id === documentId
-      ) || null
-    );
-    galleryScrollable?.current?.scrollTo({ top: 0, behavior: 'smooth' });
-
-    if (documentId) {
-      // Set a timer to return to the main gallery after a period of time
-      galleryTimerRef.current = setTimeout(() => {
-        setDocumentId(null);
-      }, RETURN_TO_GALLERY_TIMEOUT) as unknown as number;
-    }
-
-    return () => {
-      if (galleryTimerRef.current) {
-        clearTimeout(galleryTimerRef.current);
-      }
-    };
-  }, [documentId]);
 
   const titleStyle = {
     bottom: `3%`,
