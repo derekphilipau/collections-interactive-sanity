@@ -6,9 +6,9 @@ Originally based on [Blog Starter Kit with Sanity](https://vercel.com/templates/
 
 ## Demo
 
-### ["Wall" View](https://collections-interactive-sanity-74xa1efxf-derekphilipau.vercel.app/wall)
+### ["Wall" View](https://collections-interactive-sanity-derekphilipau.vercel.app/wall)
 
-### [Traditional thumbnail View](https://collections-interactive-sanity-74xa1efxf-derekphilipau.vercel.app/)
+### [Traditional thumbnail View](https://collections-interactive-sanity-derekphilipau.vercel.app/)
 
 # Why
 
