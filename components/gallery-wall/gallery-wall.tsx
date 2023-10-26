@@ -3,7 +3,7 @@
 import { Key, useState } from 'react';
 import type { GalleryWall, InstalledArtwork } from '@/types';
 
-import { getTranslation } from '@/lib/utils';
+import { cn, getTranslation } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent } from '@/components/ui/sheet-custom';
 import ThumbnailImage from '../image/thumbnail-image';
@@ -27,26 +27,17 @@ export default function GalleryWall({ galleryWall }: GalleryWallProps) {
     }
   }
 
+  const imgClassName =
+    'absolute drop-shadow-lg hover:outline outline-offset-4 hover:outline-1 outline-white cursor-pointer';
+
   return (
     <div className="relative h-screen w-screen overflow-x-hidden bg-neutral-800 bg-gradient-to-t from-neutral-900 to-neutral-800">
-      <div
-        className="absolute z-40"
-        style={{
-          bottom: `3%`,
-          left: `2%`,
-        }}
-      >
+      <div className="absolute z-40 bottom-8 left-8">
         <h1 className="text-white text-xl md:text-3xl lg:text-5xl font-bold tracking-tight leading-tight md:leading-none cursor-pointer uppercase">
           {getTranslation(galleryWall.title, lang)}
         </h1>
       </div>
-      <div
-        className="absolute z-50 text-xl text-muted font-bold tracking-tight leading-tight md:leading-none"
-        style={{
-          bottom: `3%`,
-          right: '3%',
-        }}
-      >
+      <div className="absolute z-50 text-xl text-muted font-bold tracking-tight leading-tight md:leading-none bottom-8 right-8">
         {lang !== 'es' && (
           <Button variant="custom" size="xl" onClick={() => setLang('es')}>
             Español
@@ -63,11 +54,14 @@ export default function GalleryWall({ galleryWall }: GalleryWallProps) {
           (installedArtwork: InstalledArtwork, i: Key) => (
             <div
               key={i}
-              className="absolute drop-shadow-lg hover:outline outline-offset-4 hover:outline-1 outline-white cursor-pointer"
               style={{
+                position: 'absolute',
                 width: `${installedArtwork.width}%`,
                 top: `${installedArtwork.top}%`,
                 left: `${installedArtwork.left}%`,
+                cursor: 'pointer',
+                filter:
+                  'drop-shadow(0 10px 8px rgb(0 0 0 / 0.4)) drop-shadow(0 4px 3px rgb(0 0 0 / 0.4))',
               }}
               onClick={() => onImageClick(installedArtwork)}
             >
