@@ -27,9 +27,6 @@ export default function GalleryWall({ galleryWall }: GalleryWallProps) {
     }
   }
 
-  const imgClassName =
-    'absolute drop-shadow-lg hover:outline outline-offset-4 hover:outline-1 outline-white cursor-pointer';
-
   return (
     <div className="relative h-screen w-screen overflow-x-hidden bg-neutral-800 bg-gradient-to-t from-neutral-900 to-neutral-800">
       <div className="absolute z-40 bottom-8 left-8">
